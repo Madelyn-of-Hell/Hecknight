@@ -1,34 +1,20 @@
-import time
-import random
-# Colour Sensors - range between [TBD]
-leftXYZ:list = ['0','0','0']
-rightXYZ:list = ['0','0','0']
+from colourwork import stackfunctions
+from ev3dev2.sensor import INPUT_1, INPUT_2
+from ev3dev2.sensor.lego import ColorSensor
+from ev3dev2.motor import LargeMotor, SpeedPercent, OUTPUT_A, OUTPUT_B
+ 
+LeftSensor:stackfunctions  = stackfunctions(True, 'ColorSensor(INPUT_1)')
+RightSensor:stackfunctions = stackfunctions(True, 'ColorSensor(INPUT_2)')
+LeftWheel:LargeMotor  = LargeMotor(OUTPUT_A)
+RightWheel:LargeMotor = LargeMotor(OUTPUT_B)
+LeftSpeed:float  = 1
+RightSpeed:float = 1
+while True:
+    LeftSensor.update()
+    RightSensor.update()
 
-# A temporary measure - creates random values to be 
-# perceived as white for testing purposes.
-class newwhite():
-    def new() -> list:
-        return [random.randint(6901,9642)/10000,random.randint(7157,10000)/10000, random.randint(5906,8252)/10000]
+    LeftSpeed   *= LeftSensor.sensorChange[0]
+    RightSensor *= RightSensor.sensorChange[0]
 
-# Declares necessary variables - the calibration values, 
-# the stacks, and the initialiser (another debug option)
-calibrate:list = []
-stack:dict = []
-parsedStacks = {}
-init:bool = True
-
-# Initialisation protocols - calibrates the sensors
-# and populates the stacks 
-if init:
-    init = False
-
-    for i in range(10): 
-        time.sleep(0.5)
-        calibrate.append(newwhite.new())
-    
-    stack = calibrate*5 
-    print(stack)
-    print(calibrate)
-
-while True: 
-    break
+    LeftWheel.on(LeftSpeed)    
+    RightWheel.on(RightSpeed)
