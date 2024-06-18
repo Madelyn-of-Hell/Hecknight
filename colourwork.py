@@ -23,6 +23,7 @@ class stackfunctions():
         self.inputStackParsed:list = []
         # The measurements of change in the stack
         self.sensorChange:list[int] = [0,0,0,0,0]
+        self.sensorModGreen:list[int] = [0,0,0,0,0]
         self.Sensor = ColourSensor
 
         self.test:bool = IsTestMode
@@ -76,6 +77,17 @@ class stackfunctions():
         try:self.sensorChange[4] = (self.inputStackParsed[0].hsv_s/self.inputStackParsed[49].hsv_s) *100
         except:self.sensorChange[4] = 0
         
+        try:self.sensorModGreen[0] = (self.greenStack[0].hsv_s/self.greenStack[1].hsv_s) *100
+        except:self.sensorModGreen[0] = 0
+        try:self.sensorModGreen[1] = (self.greenStack[0].hsv_s/self.greenStack[4].hsv_s) *100
+        except:self.sensorModGreen[1] = 0
+        try:self.sensorModGreen[2] = (self.greenStack[0].hsv_s/self.greenStack[9].hsv_s) *100
+        except:self.sensorModGreen[2] = 0
+        try:self.sensorModGreen[3] = (self.greenStack[0].hsv_s/self.greenStack[19].hsv_s) *100
+        except:self.sensorModGreen[3] = 0
+        try:self.sensorModGreen[4] = (self.greenStack[0].hsv_s/self.greenStack[49].hsv_s) *100
+        except:self.sensorModGreen[4] = 0
+
         for value in self.sensorChange: print(value, '%')
        
     def compareblack(top, reference):
