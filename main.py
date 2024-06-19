@@ -1,28 +1,33 @@
 from ev3dev2.motor import LargeMotor, SpeedPercent, OUTPUT_A, OUTPUT_B
 from ev3dev2.sensor.lego import ColorSensor, InfraredSensor
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3
+from pybricks.ev3devices import Motor, ColorSensor, InfraredSensor
+
 from colourwork import stackfunctions
 from DSTSensor import DSTSensor
- 
-LeftSensor:stackfunctions  = stackfunctions(True, 'ColorSensor(INPUT_1)')
-RightSensor:stackfunctions = stackfunctions(True, 'ColorSensor(INPUT_2)')
-DST = DSTSensor('InfraredSensor(INPUT_3)', True)
+leftSensor:stackfunctions  = stackfunctions(True, 'ColorSensor(\'in1\')')
+rightSensor:stackfunctions = stackfunctions(True, 'ColorSensor(\'in2\')')
+
+leftWheel  = Motor('outA')
+rightWheel = Motor('outB')
+DST = DSTSensor('InfraredSensor(\'in3\')', True)
 
 # LeftWheel:LargeMotor  = LargeMotor(OUTPUT_A)
 # RightWheel:LargeMotor = LargeMotor(OUTPUT_B)
-LeftSpeed:float  = 1
-RightSpeed:float = 1
+leftSpeed:float  = 1
+rightSpeed:float = 1
+
+
 while True:
-    LeftSensor.update()
-    RightSensor.update()
+    leftSensor.update()
+    rightSensor.update()
 
-    LeftSpeed   *= LeftSensor.sensorChange [0]
-    RightSpeed  *= RightSensor.sensorChange[0]
+    leftSpeed   *= leftSensor.sensorChange [0]
+    rightSpeed  *= rightSensor.sensorChange[0]
 
-    LeftSpeed   += LeftSensor.sensorModGreen [0]
-    RightSpeed  += RightSensor.sensorModGreen[0]
+    leftSpeed   += leftSensor.sensorModGreen [0]
+    rightSpeed  += rightSensor.sensorModGreen[0]
 
-    if DST.objectDetected():
-        
-    # LeftWheel.on(LeftSpeed)    
-    # RightWheel.on(RightSpeed)
+    if DST.objectDetected: ...
+    leftWheel.run(leftSpeed)    
+    rightWheel.run(rightSpeed)

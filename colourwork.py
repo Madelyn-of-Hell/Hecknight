@@ -1,8 +1,7 @@
 import time, random
 from colormath.color_objects import HSVColor, AdobeRGBColor
 from colormath.color_conversions import convert_color# Colour Sensors - range between [TBD]
-from ev3dev2.sensor.lego import ColorSensor
-
+from pybricks.ev3devices import ColorSensor
 
 # A temporary measure - creates random values to be 
 # perceived as white for testing purposes.

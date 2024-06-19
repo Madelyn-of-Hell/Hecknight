@@ -1,4 +1,4 @@
-from ev3dev2.sensor.lego import ColorSensor, InfraredSensor
+from pybricks.ev3devices import InfraredSensor
 import time
 class DSTSensor():
     """Functions regarding working with the Infrared Sensor"""
@@ -19,7 +19,7 @@ class DSTSensor():
                 time.sleep(0.5)
                 self.INFStack.append(self.newDST)
     def newDST(self) -> float:
-        return self.sensor.proximity * 0.7
+        return self.sensor.distance * 0.7
 
     def fakeDST(self) -> float:
         return 100 * 0.7
