@@ -1,6 +1,3 @@
-from ev3dev2.motor import LargeMotor, SpeedPercent, OUTPUT_A, OUTPUT_B
-from ev3dev2.sensor.lego import ColorSensor, InfraredSensor
-from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3
 from pybricks.ev3devices import Motor, ColorSensor, InfraredSensor
 
 from colourwork import stackfunctions
