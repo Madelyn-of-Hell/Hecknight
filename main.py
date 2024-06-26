@@ -22,7 +22,7 @@ while True:
     LeftSpeed   += LeftSensor.sensorModGreen [0]
     RightSpeed  += RightSensor.sensorModGreen[0]
 
-    if DST.objectDetected():
+    if DST.objectDetected(): ...
         
     # LeftWheel.on(LeftSpeed)    
     # RightWheel.on(RightSpeed)
