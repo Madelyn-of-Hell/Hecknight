@@ -1,5 +1,5 @@
-# Hecknight
-
+# Deprecated
+This is the old python code - now we're using pretty rust code to write hecknight :3
 ### Values for calibration
 
 > `detectionThreshold` in DSTSensor at `line 28`
